@@ -38,9 +38,11 @@ export const LoginButton = Styled.button`
     padding: .375rem .75rem;
     font-size: 1rem;
     border-radius: .25rem;
+    outline: none;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
 
-    &:hover {
+    &:hover,
+    &:active {
         color: #fff;
         background-color: #198754;
         border-color: transparent;

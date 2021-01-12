@@ -1,4 +1,7 @@
 import { withRouter } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import UserDropdown from '../UserDropdown/UserDropdown.component.jsx';
 import LoginForm from '../LoginForm/LoginForm.component.jsx';
 import {
     Container,
@@ -11,6 +14,8 @@ import {
 } from './NavBar.styles.jsx';
 
 const NavBar = (props) => {
+    const token = useSelector((state) => state.auth.token);
+
     //TODO : if logged in display options if not display login form
     return (
         <NavBarContainer color='red'>
@@ -19,17 +24,19 @@ const NavBar = (props) => {
                 <NavItemsContainer>
                     <NavItemsList>
                         <NavItem>
-                            <NavigationLink to='/'>SOME TEXT</NavigationLink>
+                            <NavigationLink to='/'>Matches</NavigationLink>
                         </NavItem>
                         <NavItem>
-                            <NavigationLink to='/'>SOME TEXT</NavigationLink>
+                            <NavigationLink to='/'>Lists</NavigationLink>
                         </NavItem>
                         <NavItem>
-                            <NavigationLink to='/'>SOME TEXT</NavigationLink>
+                            <NavigationLink to='/'>Messages</NavigationLink>
                         </NavItem>
                     </NavItemsList>
                 </NavItemsContainer>
-                <LoginForm />
+                {!token && <LoginForm />}
+                {/* TODO : drop down menu with logout option */}
+                {token && <UserDropdown />}
             </Container>
         </NavBarContainer>
     );

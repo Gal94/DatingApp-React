@@ -1,14 +1,16 @@
 import { useState } from 'react';
+import { connect } from 'react-redux';
 
+import { login } from '../../store/actions/auth';
 import { LoginFormContainer, Input, LoginButton } from './LoginForm.styles';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const onLoginHandler = (event) => {
         event.preventDefault();
-        // TODO : Call to a login action
+        props.onLogin(username, password);
     };
 
     return (
@@ -30,4 +32,10 @@ const LoginForm = () => {
     );
 };
 
-export default LoginForm;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onLogin: (username, password) => dispatch(login(username, password)),
+    };
+};
+
+export default connect(null, mapDispatchToProps)(LoginForm);
