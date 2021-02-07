@@ -41,6 +41,7 @@ namespace API.Services
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
+            // return a serialized token
             return tokenHandler.WriteToken(token);
         }
     }

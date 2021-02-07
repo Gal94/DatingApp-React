@@ -2,6 +2,7 @@ import { HomePageContainer } from './HomePage.styles';
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Home from '../components/Home/Home.component';
 
 const HomePage = () => {
     const [users, setUsers] = useState([]);
@@ -16,15 +17,7 @@ const HomePage = () => {
     }, []);
     return (
         <HomePageContainer>
-            {users.map((user) => {
-                return (
-                    <div key={user.id}>
-                        <p>
-                            {user.id} - {user.userName}
-                        </p>
-                    </div>
-                );
-            })}
+            <Home />
         </HomePageContainer>
     );
 };

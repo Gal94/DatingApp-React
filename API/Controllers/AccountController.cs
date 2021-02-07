@@ -29,7 +29,7 @@ namespace API.Controllers
             if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
 
             // The hasing algorithm - using ensures that when usage has been done
-            // the variable will be disposed via garbage collector
+            // the variable will be disposed via garbage collector - due to using keyword
             using var hmac = new HMACSHA512();
             // convert password to bytes, save hashed pass and its salt
             var user = new AppUser {
