@@ -1,6 +1,4 @@
-import { withRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
 import UserDropdown from '../UserDropdown/UserDropdown.component.jsx';
 import LoginForm from '../LoginForm/LoginForm.component.jsx';
 import {
@@ -22,17 +20,25 @@ const NavBar = (props) => {
             <Container>
                 <SiteLink to='/'>DatingApp</SiteLink>
                 <NavItemsContainer>
-                    <NavItemsList>
-                        <NavItem>
-                            <NavigationLink to='/'>Matches</NavigationLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavigationLink to='/'>Lists</NavigationLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavigationLink to='/'>Messages</NavigationLink>
-                        </NavItem>
-                    </NavItemsList>
+                    {token && (
+                        <NavItemsList>
+                            <NavItem>
+                                <NavigationLink to='/members'>
+                                    Matches
+                                </NavigationLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavigationLink to='/lists'>
+                                    Lists
+                                </NavigationLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavigationLink to='/messages'>
+                                    Messages
+                                </NavigationLink>
+                            </NavItem>
+                        </NavItemsList>
+                    )}
                 </NavItemsContainer>
                 {!token && <LoginForm />}
                 {/* TODO : drop down menu with logout option */}

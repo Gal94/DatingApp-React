@@ -1,5 +1,6 @@
 import * as actionTypes from '../actionTypes';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const login = (username, password) => {
     return async (dispatch) => {
@@ -26,8 +27,15 @@ export const login = (username, password) => {
             });
             localStorage.setItem('user', JSON.stringify(response.data));
         } catch (error) {
-            // TODO : failed login action
-            console.log(error);
+            toast.error(error.response.data, {
+                position: 'bottom-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
     };
 };

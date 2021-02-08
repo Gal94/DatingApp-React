@@ -13,39 +13,37 @@ export const Input = Styled.input`
     font-size: 1rem;
     color: #212529;
     background-color: #fff;
-    border: 1px solid #ced4da;
+    border: 1px solid #d1d1d1;
     appearance: none;
     border-radius: .25rem;
-    transition: box-shadow .3s ease-in-out;
+    transition: box-shadow .2s linear;
     outline: none;
 
     &:focus-within {
-        box-shadow: 1px 1px 5px #0d6efd, -1px -1px 5px #0d6efd;
+        box-shadow: 1px 1px 5px #d1d1d1, -1px -1px 5px #d1d1d1;
     }
 `;
 
 export const LoginButton = Styled.button`
 
     cursor: pointer;
-    color: #198754;
+    color: white;
     display: inline-block;
     line-height: 1.5;
     text-align: center;
     text-decoration: none;
     vertical-align: middle;
-    background-color: transparent;
-    border: 1px solid #198754;
+    background-color: #4DDB6E;
+    border: 1px solid #318C43;
     padding: .375rem .75rem;
     font-size: 1rem;
     border-radius: .25rem;
     outline: none;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+    transition: background-color .15s ease-in-out, border-color .15s ease-in-out;
 
     &:hover,
     &:active {
-        color: #fff;
-        background-color: #198754;
+        background-color: #3CAB56;
         border-color: transparent;
     }
-
 `;

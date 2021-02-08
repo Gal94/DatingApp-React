@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { logout } from '../../store/actions/auth';
 
 import {
@@ -13,20 +14,32 @@ import {
 
 const UserDropdown = (props) => {
     const [showDropdown, setShowDropdown] = useState(false);
+
+    let history = useHistory();
+
     const showDropdownHandler = () => {
         setShowDropdown(!showDropdown);
+    };
+
+    const logout = () => {
+        props.onLogoutHandler();
+        history.push('/');
     };
 
     return (
         <UserDropdownContainer>
             <DropdownAnchor onClick={showDropdownHandler}>
-                Welcome user{' '}
+                Welcome{' '}
+                {`${
+                    props.username.charAt(0).toUpperCase() +
+                    props.username.slice(1)
+                }`}
                 <TriangleSpan onClick={showDropdownHandler}></TriangleSpan>{' '}
             </DropdownAnchor>
             <DropdownMenu className={showDropdown ? 'show' : null}>
                 <MenuLink to='#'>Edit Profile</MenuLink>
                 <Divider></Divider>
-                <MenuLink to='#' onClick={props.onLogoutHandler}>
+                <MenuLink to='#' onClick={logout}>
                     Logout
                 </MenuLink>
             </DropdownMenu>
@@ -40,4 +53,10 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(UserDropdown);
+const mapStateToProps = (state) => {
+    return {
+        username: state.auth.username,
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserDropdown);

@@ -22,6 +22,7 @@ const btn = css`
     background-image: none;
     border: 1px solid transparent;
     border-radius: 0.3rem;
+    outline: none;
 `;
 
 export const HomePageContainer = Styled.div`
@@ -37,10 +38,12 @@ export const ContentContainer = Styled.div`
 
 export const DescTitle = Styled.h1`
     margin: 0;
+    color: black;
 `;
 
 export const DescText = Styled.p`
-
+    color: black;
+    font-weight: bold;
 `;
 
 export const ButtonsContainer = Styled.div`
@@ -49,18 +52,18 @@ export const ButtonsContainer = Styled.div`
 
 export const RegisterBtn = Styled.button`
     ${btn}
-    background-color: #0275d8;
+    background-color: #FF217D;
 
     &: hover {
-        background-color :#025dad;
+        background-color :#CF1B5D;
     }
 `;
 
 export const MoreInfoBtn = Styled.button`
     ${btn}
-    background-color: #6C757D;
+    background-color: #4DDB6E;
 
     &: hover {
-        background-color: #5a6269;
+        background-color: #3CAB56;
     }
 `;

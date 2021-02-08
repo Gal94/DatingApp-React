@@ -12,7 +12,6 @@ import {
 
 const Home = (props) => {
     const [displayRegister, setDisplayRegister] = useState(false);
-
     return (
         <HomePageContainer>
             <ContentContainer>

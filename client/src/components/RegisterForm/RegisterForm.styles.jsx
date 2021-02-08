@@ -1,7 +1,7 @@
 import Styled, { css } from 'styled-components';
 
 export const RegisterFormTitle = Styled.h1`
-    color: #0275D8;
+    color: black;
 `;
 
 export const RegisterFormHR = Styled.hr`
@@ -20,7 +20,7 @@ const buttonsStyle = css`
     margin-bottom: 0;
     margin-right: 0.5rem;
     color: white;
-    background-color: #198754;
+    background-color: #ff217d;
 
     display: inline-block;
     text-decoration: none;
@@ -40,7 +40,7 @@ const buttonsStyle = css`
     outline: none;
 
     &: hover {
-        background-color: #115c39;
+        background-color: #cf1b5d;
     }
 `;
 
@@ -52,7 +52,7 @@ export const RegisterFormCancelButton = Styled.button`
     ${buttonsStyle}
     background-color: #c5c9c8;
 
-    &: hover {
+    &:hover {
         background-color: #acadad;
     }
 `;

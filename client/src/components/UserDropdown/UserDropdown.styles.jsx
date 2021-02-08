@@ -15,10 +15,8 @@ export const DropdownAnchor = Styled.a`
     user-select: none;
 
     &:hover {
-        color: #dae0e5;
-        text-decoration: underline;
+        color: #c5c5c5;
     }
-
 `;
 
 export const TriangleSpan = Styled.span`
@@ -39,8 +37,6 @@ export const DropdownMenu = Styled.div`
     z-index: 9;
     float: left;
     min-width: 10rem;
-    padding: .5rem 0;
-    // margin: .125rem 0;
     margin-top: .5rem;
     font-size: 1rem;
     color: #212529;
@@ -61,7 +57,9 @@ export const DropdownMenu = Styled.div`
 export const MenuLink = Styled(Link)`
     display: block;
     width: 100%;
-    padding: .25rem 1.5rem;
+    padding: .75rem 1.5rem;
+    margin: 0;
+    height: 100%;
     clear: both;
     color: #212529;
     text-align: left;
@@ -69,11 +67,15 @@ export const MenuLink = Styled(Link)`
     background-color: transparent;
     border: 0;
     text-decoration: none;
+
+    &:hover,
+    &:active {
+        background-color: #f5f5f5;
+    }
 `;
 
 export const Divider = Styled.div`
     height: 0;
-    margin: .5rem 0;
     overflow: hidden;
     border-top: 1px solid #e9ecef;
 `;

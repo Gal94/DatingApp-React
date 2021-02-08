@@ -1,18 +1,18 @@
 import Styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const getBackgroundColor = (props) => {
     return props.color || 'black';
 };
 
 export const NavBarContainer = Styled.nav`
-    background-color: ${getBackgroundColor};
+    // background-color: ${getBackgroundColor};
     position: fixed;
     top:0;
     right:0;
     left:0;
     z-index: 10;
-    background-color: #212529;
+    background-color: #FF217D;
     display: flex;
     align-items: center;
     padding-top: .5rem;
@@ -47,6 +47,7 @@ export const SiteLink = Styled(Link)`
     white-space: no-wrap;
     display: flex;
     align-items: center;
+
 `;
 
 export const NavItemsContainer = Styled.div`
@@ -73,17 +74,25 @@ export const NavItem = Styled.li`
     padding-top: 4px;
 `;
 
-export const NavigationLink = Styled(Link)`
+export const NavigationLink = Styled(NavLink)`
 
     height: inherit;
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: rgba(255,255,255, .55);
+    color: rgba(255,255,255, .40);
 
+    &: hover {
+        color: #f5f5f5;
+    }
+
+    &.active {
+        color: #f5f5f5;
+    }
 
     @media(min-width: 768px) {
         padding-right: .5rem;
         padding-left: .5rem;
     }
+
 `;

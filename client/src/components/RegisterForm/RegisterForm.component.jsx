@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from '../LoginForm/LoginForm.styles';
+import { toast } from 'react-toastify';
 import {
     RegisterFormCancelButton,
     RegisterFormContainer,
@@ -19,20 +20,33 @@ const RegisterForm = (props) => {
     const registerHandler = async (event) => {
         event.preventDefault();
 
-        await axios.post(
-            'https://localhost:5001/api/account/register',
-            {
-                username,
-                password,
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
+        try {
+            await axios.post(
+                'https://localhost:5001/api/account/register',
+                {
+                    username,
+                    password,
                 },
-            }
-        );
-        props.onLogin(username, password);
-        props.cancelRegister();
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+            props.onLogin(username, password);
+            props.cancelRegister();
+        } catch (error) {
+            toast.error(error.response.data, {
+                position: 'bottom-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            //console.log(error.response);
+        }
     };
 
     return (
