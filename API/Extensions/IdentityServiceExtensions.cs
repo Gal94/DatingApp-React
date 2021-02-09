@@ -9,7 +9,7 @@ namespace API.Extensions
     public static class IdentityServiceExtensions
     {
         public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config) {
-            //Authentication Services - uses by default by the UseAuthorization middleware
+            //Authentication Services - used by default by the UseAuthorization middleware
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
                 options.TokenValidationParameters = new TokenValidationParameters{
 
@@ -19,7 +19,7 @@ namespace API.Extensions
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"])),
                     // The api
                     ValidateIssuer = false,
-                    // The angular app
+                    // The react app
                     ValidateAudience = false,
                 };
             });
