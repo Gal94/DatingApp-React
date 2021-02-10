@@ -55,7 +55,7 @@ export const RegisterBtn = Styled.button`
     background-color: #FF217D;
 
     &: hover {
-        background-color :#CF1B5D;
+        background-color: #CF1B5D;
     }
 `;
 

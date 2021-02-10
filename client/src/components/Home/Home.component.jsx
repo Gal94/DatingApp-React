@@ -10,39 +10,48 @@ import {
     RegisterBtn,
 } from './Home.styles';
 
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+
 const Home = (props) => {
+    const token = useSelector((state) => state.auth.token);
+    const history = useHistory();
+
     const [displayRegister, setDisplayRegister] = useState(false);
     return (
-        <HomePageContainer>
-            <ContentContainer>
-                {!displayRegister && (
-                    <React.Fragment>
-                        <DescTitle>Find your match</DescTitle>
-                        <DescText>
-                            {' '}
-                            Come on in to view your matches... all you need to
-                            do is sign up!
-                        </DescText>
-                        <ButtonsContainer>
-                            <RegisterBtn
-                                onClick={() => setDisplayRegister(true)}
-                            >
-                                Register
-                            </RegisterBtn>
-                            <MoreInfoBtn>Read More</MoreInfoBtn>
-                        </ButtonsContainer>
-                    </React.Fragment>
-                )}
+        <React.Fragment>
+            {token && history.push('/members')}
+            <HomePageContainer>
+                <ContentContainer>
+                    {!displayRegister && (
+                        <React.Fragment>
+                            <DescTitle>Find your match</DescTitle>
+                            <DescText>
+                                {' '}
+                                Come on in to view your matches... all you need
+                                to do is sign up!
+                            </DescText>
+                            <ButtonsContainer>
+                                <RegisterBtn
+                                    onClick={() => setDisplayRegister(true)}
+                                >
+                                    Register
+                                </RegisterBtn>
+                                <MoreInfoBtn>Read More</MoreInfoBtn>
+                            </ButtonsContainer>
+                        </React.Fragment>
+                    )}
 
-                {displayRegister && (
-                    <React.Fragment>
-                        <RegisterForm
-                            cancelRegister={() => setDisplayRegister(false)}
-                        />
-                    </React.Fragment>
-                )}
-            </ContentContainer>
-        </HomePageContainer>
+                    {displayRegister && (
+                        <React.Fragment>
+                            <RegisterForm
+                                cancelRegister={() => setDisplayRegister(false)}
+                            />
+                        </React.Fragment>
+                    )}
+                </ContentContainer>
+            </HomePageContainer>
+        </React.Fragment>
     );
 };
 

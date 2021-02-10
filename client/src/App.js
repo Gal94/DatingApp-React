@@ -11,6 +11,7 @@ import MembersPage from './pages/MembersPage/MembersPage.component';
 import MemberDetailPage from './pages/MemberDetailPage/MemberDetailPage.component';
 import ListsPage from './pages/ListsPage/ListsPage.component';
 import MessagesPage from './pages/MessagesPage/MessagesPage.component';
+import { AppContainer } from './App.styles';
 
 const App = (props) => {
     // when app starts check if a user is already connected (local storage)
@@ -43,22 +44,24 @@ const App = (props) => {
                 draggable
                 pauseOnHover
             />
-            <Switch>
-                <Route path='/' component={HomePage} exact />
-                <Route path='/members' exact>
-                    <MembersPage guarded={checkLoginStatus} />
-                </Route>
-                <Route path='/members/:id' exact>
-                    <MemberDetailPage guarded={checkLoginStatus} />
-                </Route>
-                <Route path='/lists' exact>
-                    <ListsPage guarded={checkLoginStatus} />
-                </Route>
-                <Route path='/messages' exact>
-                    <MessagesPage guarded={checkLoginStatus} />
-                </Route>
-                <Redirect to='/' />
-            </Switch>
+            <AppContainer>
+                <Switch>
+                    <Route path='/members' exact>
+                        <MembersPage guarded={checkLoginStatus} />
+                    </Route>
+                    <Route path='/members/:id' exact>
+                        <MemberDetailPage guarded={checkLoginStatus} />
+                    </Route>
+                    <Route path='/lists' exact>
+                        <ListsPage guarded={checkLoginStatus} />
+                    </Route>
+                    <Route path='/messages' exact>
+                        <MessagesPage guarded={checkLoginStatus} />
+                    </Route>
+                    <Route path='/' component={HomePage} exact />
+                    <Redirect to='/' />
+                </Switch>
+            </AppContainer>
         </Layout>
     );
 };
