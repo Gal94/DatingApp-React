@@ -77,8 +77,6 @@ const MemberDetailInfoTab = (props) => {
         }
     };
 
-    console.log(TabToShow);
-
     return (
         <MemberDetailInfoTabContainer>
             <MemberDetailInfoOptions>
