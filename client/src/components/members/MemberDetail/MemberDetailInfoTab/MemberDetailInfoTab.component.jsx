@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import MemberImages from './MemberImages/MemberImages.component';
 import {
     MemberDetailInfoOption,
     MemberDetailInfoOptions,
@@ -43,9 +44,7 @@ const MemberDetailInfoTab = (props) => {
                 return (
                     <div>
                         <MemberDetailInfoTitle>Photos</MemberDetailInfoTitle>
-                        <MemberDetailInfoText>
-                            Photos go here
-                        </MemberDetailInfoText>
+                        <MemberImages photos={props.member.photos} />
                     </div>
                 );
             case 'Messages':

@@ -37,7 +37,6 @@ const MemberDetailPage = (props) => {
         const token = JSON.parse(localStorage.getItem('user'))?.token || null;
         token ? fetchUser(token) : props.guarded();
     }, []);
-    console.log(member);
     return <MemberComponent member={member} />;
 };
 

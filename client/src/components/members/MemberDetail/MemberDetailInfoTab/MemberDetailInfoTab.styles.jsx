@@ -18,7 +18,7 @@ const getActiveStatus = (props) => {
     if (props.active) {
         return css`
             color: black;
-            border-color: #ff217d;
+            border-bottom: 3px solid #ff217d;
         `;
     }
 };
@@ -34,7 +34,7 @@ export const MemberDetailInfoOption = Styled.li`
 
     &:hover {
         color: black;
-        border-bottom: 2px solid #FF217D;
+        border-bottom: 3px solid #FF217D;
     }
 
     &:last-child {
@@ -43,7 +43,7 @@ export const MemberDetailInfoOption = Styled.li`
         margin: 0;
 
         &:hover {
-            border-color: #e0e0e0;
+            border-bottom: 2px solid #e0e0e0;
             color: #ff217d;
             cursor: initial;
         }
