@@ -12,6 +12,7 @@ import MemberDetailPage from './pages/MemberDetailPage/MemberDetailPage.componen
 import ListsPage from './pages/ListsPage/ListsPage.component';
 import MessagesPage from './pages/MessagesPage/MessagesPage.component';
 import { AppContainer } from './App.styles';
+import MemberEditPage from './pages/MemberEditPage/MemberEditPage.component';
 
 const App = (props) => {
     // when app starts check if a user is already connected (local storage)
@@ -48,6 +49,9 @@ const App = (props) => {
                 <Switch>
                     <Route path='/members' exact>
                         <MembersPage guarded={checkLoginStatus} />
+                    </Route>
+                    <Route path='/members/edit' exact>
+                        <MemberEditPage guarded={checkLoginStatus} />
                     </Route>
                     <Route path='/members/:id' exact>
                         <MemberDetailPage guarded={checkLoginStatus} />

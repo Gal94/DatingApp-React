@@ -37,9 +37,18 @@ const UserDropdown = (props) => {
                 <TriangleSpan onClick={showDropdownHandler}></TriangleSpan>{' '}
             </DropdownAnchor>
             <DropdownMenu className={showDropdown ? 'show' : null}>
-                <MenuLink to='#'>Edit Profile</MenuLink>
+                <MenuLink
+                    onClick={() => setShowDropdown(false)}
+                    to='/members/edit'
+                >
+                    Edit Profile
+                </MenuLink>
                 <Divider></Divider>
-                <MenuLink to='#' onClick={logout}>
+                <MenuLink
+                    onClick={() => setShowDropdown(false)}
+                    to='#'
+                    onClick={logout}
+                >
                     Logout
                 </MenuLink>
             </DropdownMenu>

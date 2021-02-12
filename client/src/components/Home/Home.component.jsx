@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RegisterForm from '../RegisterForm/RegisterForm.component';
 import {
     ButtonsContainer,
@@ -17,10 +17,13 @@ const Home = (props) => {
     const token = useSelector((state) => state.auth.token);
     const history = useHistory();
 
+    useEffect(() => {
+        token && history.push('/members')
+    })
+
     const [displayRegister, setDisplayRegister] = useState(false);
     return (
         <React.Fragment>
-            {token && history.push('/members')}
             <HomePageContainer>
                 <ContentContainer>
                     {!displayRegister && (
