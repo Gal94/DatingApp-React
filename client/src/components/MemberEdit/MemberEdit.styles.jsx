@@ -85,3 +85,51 @@ export const MemberEditBtn = Styled.button`
     outline: none;
     ${changed}
 `;
+
+export const MemberEditFieldsContainer = Styled.div`
+    width: 70%;
+`;
+
+export const MemberEditAboutContainer = Styled.div`
+    margin-top: 1rem;
+`;
+
+export const MemberEditAboutTitle = Styled.h1`
+    margin: .5rem 0 0;
+    padding: 0;
+    font-size: 24px;
+`;
+
+export const MemberEditAboutTextArea = Styled.textarea`
+    width: 100%;
+    height: 6rem;
+    border: 2px solid #efefef;
+    border-radius: .3rem;
+    padding: .5rem 1rem .5rem .5rem;
+    font-size: 14px;
+    resize: none;
+    outline: none;
+`;
+
+export const MemberEditLocationDetailsContainer = Styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+`;
+
+export const MemberEditLocationTitle = Styled.label`
+    margin-top: .5rem;
+    margin-right: .5rem;
+    display: inline-block;
+`;
+
+export const MemberEditLocationInput = Styled.input`
+    margin-top: .5rem;
+    width: 12rem;
+    height: 30px;
+    font-size: 14px;
+    padding-left: .5rem;
+    border: 1px solid #c0c0c0;
+    border-radius: .2rem;
+    outline: none;
+`;

@@ -25,7 +25,7 @@ const getActiveStatus = (props) => {
 
 export const MemberDetailInfoOption = Styled.li`
     padding: .5rem 1rem;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     color: #FF217D;
     cursor: pointer;

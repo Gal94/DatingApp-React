@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import MemberEdit from '../../components/MemberEdit/MemberEdit.component';
 
 const MemberEditPage = (props) => {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
 
     const fetchUserByUsername = async (token, username) => {
         const { data } = await axios.get(
