@@ -4,6 +4,8 @@ export const Section = Styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 1.5rem;
+    position: relative;
+    overflow-x: hidden;
 `;
 
 export const UpperSectionTitle = Styled.h1`
@@ -13,10 +15,29 @@ export const UpperSectionTitle = Styled.h1`
     width: 20rem;
 `;
 
+const display = (props) => {
+    if (props.changed) {
+        return css`
+            opacity: 1;
+            transform: translateX(0);
+        `;
+    } else {
+        return css`
+            opacity: 0;
+        `;
+    }
+};
+
 export const UpperSectionChanged = Styled.div`
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    transform: translateX(100%);
     background-color: #abcf08;
+    transition: all .75s ease-in-out;
     width: 70%;
     border-radius: 0.3rem;
+    ${display}
 `;
 
 export const UpperSectionChangedText = Styled.p`

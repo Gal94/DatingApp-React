@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import {
     MemberDetailInfo,
     MemberDetailTitle,
 } from '../members/MemberDetail/MemberDetailCard/MemberDetailCard.styles';
+import axios from 'axios';
 import {
     MemberDetailInfoOption,
     MemberDetailInfoOptions,
@@ -29,21 +31,79 @@ import {
 } from './MemberEdit.styles';
 
 const MemberEdit = (props) => {
-    const [description, setDescription] = useState();
-    const [lookingFor, setLookingFor] = useState();
-    const [interests, setInterests] = useState();
-    const [city, setCity] = useState();
-    const [country, setCountry] = useState();
+    const [introduction, setIntroduction] = useState(props.user.introduction);
+    const [lookingFor, setLookingFor] = useState(props.user.lookingFor);
+    const [interests, setInterests] = useState(props.user.interests);
+    const [city, setCity] = useState(props.user.city);
+    const [country, setCountry] = useState(props.user.country);
     const [changed, setChanged] = useState(false);
     const [selectedTab, setSelectedTab] = useState('About');
 
+    // Toggle button if changes have been made
     useEffect(() => {
-        setDescription(props.user.introduction);
-        setLookingFor(props.user.lookingFor);
-        setInterests(props.user.interests);
-        setCity(props.user.city);
-        setCountry(props.user.country);
-    }, []);
+        if (
+            country === props.user.country &&
+            introduction === props.user.introduction &&
+            lookingFor === props.user.lookingFor &&
+            interests === props.user.interests &&
+            city === props.user.city
+        ) {
+            setChanged(false);
+        } else setChanged(true);
+    }, [introduction, country, lookingFor, interests, city]);
+
+    const fieldChangeHandler = (e, field) => {
+        switch (field) {
+            case 'desc':
+                setIntroduction(e.target.value);
+                break;
+            case 'lookingFor':
+                setLookingFor(e.target.value);
+                break;
+            case 'interests':
+                setInterests(e.target.value);
+                break;
+            case 'city':
+                setCity(e.target.value);
+                break;
+            case 'country':
+                setCountry(e.target.value);
+                break;
+            default:
+                break;
+        }
+    };
+
+    const updateMemberHandler = async () => {
+        const token = JSON.parse(localStorage.getItem('user')).token;
+        const data = await axios.put(
+            'https://localhost:5001/api/users',
+            {
+                introduction: introduction,
+                lookingFor: lookingFor,
+                interests: interests,
+                city: city,
+                country: country,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        console.log(data);
+        toast.success('User updated successfully', {
+            position: 'bottom-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: undefined,
+        });
+
+        setChanged(false);
+    };
 
     let tabContent = () => {
         switch (selectedTab) {
@@ -54,27 +114,20 @@ const MemberEdit = (props) => {
                     <MemberEditAboutContainer>
                         <MemberEditAboutTitle>Description</MemberEditAboutTitle>
                         <MemberEditAboutTextArea
-                            value={description}
-                            onChange={(e) => {
-                                setDescription(e.target.value);
-                                setChanged(true);
-                            }}
+                            value={introduction}
+                            onChange={(e) => fieldChangeHandler(e, 'desc')}
                         ></MemberEditAboutTextArea>
                         <MemberEditAboutTitle>Looking For</MemberEditAboutTitle>
                         <MemberEditAboutTextArea
                             value={lookingFor}
-                            onChange={(e) => {
-                                setLookingFor(e.target.value);
-                                setChanged(true);
-                            }}
+                            onChange={(e) =>
+                                fieldChangeHandler(e, 'lookingFor')
+                            }
                         ></MemberEditAboutTextArea>
                         <MemberEditAboutTitle>Interests</MemberEditAboutTitle>
                         <MemberEditAboutTextArea
                             value={interests}
-                            onChange={(e) => {
-                                setInterests(e.target.value);
-                                setChanged(true);
-                            }}
+                            onChange={(e) => fieldChangeHandler(e, 'interests')}
                         ></MemberEditAboutTextArea>
                         <MemberEditAboutTitle>
                             Location Details:
@@ -87,10 +140,9 @@ const MemberEdit = (props) => {
                                 <MemberEditLocationInput
                                     name='city'
                                     value={city ? city : ''}
-                                    onChange={(e) => {
-                                        setCity(e.target.value);
-                                        setChanged(true);
-                                    }}
+                                    onChange={(e) =>
+                                        fieldChangeHandler(e, 'city')
+                                    }
                                 ></MemberEditLocationInput>
                             </div>
                             <div>
@@ -100,10 +152,9 @@ const MemberEdit = (props) => {
                                 <MemberEditLocationInput
                                     name='country'
                                     value={country ? country : ''}
-                                    onChange={(e) => {
-                                        setCountry(e.target.value);
-                                        setChanged(true);
-                                    }}
+                                    onChange={(e) =>
+                                        fieldChangeHandler(e, 'country')
+                                    }
                                 ></MemberEditLocationInput>
                             </div>
                         </MemberEditLocationDetailsContainer>
@@ -118,7 +169,7 @@ const MemberEdit = (props) => {
             <div>
                 <Section>
                     <UpperSectionTitle>Your Profile</UpperSectionTitle>
-                    <UpperSectionChanged>
+                    <UpperSectionChanged changed={changed}>
                         <UpperSectionChangedText>
                             <UpperSectionBold>Information: </UpperSectionBold>
                             You have made changes. Any unsaved changes will be
@@ -131,7 +182,6 @@ const MemberEdit = (props) => {
                         <MemberEditImageWrap>
                             <MemberEditImage src={props.user.photoUrl} />
                         </MemberEditImageWrap>
-                        {/* TODO: Export to a new component */}
                         <MemberEditInfoContainer>
                             <MemberDetailTitle>Location:</MemberDetailTitle>
                             <MemberDetailInfo>{`${props.user.city}, ${props.user.country}`}</MemberDetailInfo>
@@ -151,9 +201,7 @@ const MemberEdit = (props) => {
                         <MemberEditBtnContainer>
                             <MemberEditBtn
                                 disabled={!changed}
-                                onClick={() => {
-                                    console.log(description);
-                                }}
+                                onClick={updateMemberHandler}
                             >
                                 Save Changes
                             </MemberEditBtn>

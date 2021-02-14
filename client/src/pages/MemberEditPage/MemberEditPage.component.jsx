@@ -42,7 +42,14 @@ const MemberEditPage = (props) => {
     }, []);
 
     let content = <div>Spinner here</div>;
+   
     if (user) {
+         
+    // for(let key of Object.keys(user)) {
+    //     if(key!=='photos') {
+    //         user[key] = 'abc';
+    //     }
+    // }
         content = <MemberEdit user={user} />;
     }
 
